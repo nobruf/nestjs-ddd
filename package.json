@@ -1,6 +1,6 @@
 {
   "name": "nestjs-ddd",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A tool to generate folder and file structures for NestJS modules in accordance with Domain-Driven Design (DDD) principles.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "generate": "node index.js"
   },
   "bin": {
-    "nestjs-ddd": "./index.js"
+    "nestjs-ddd": "index.js"
   },
   "keywords": [
     "NestJS",
@@ -23,6 +23,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nobruf/nestjs-ddd.git"
-  }
+    "url": "git+https://github.com/nobruf/nestjs-ddd.git"
+  },
+  "devDependencies": {},
+  "bugs": {
+    "url": "https://github.com/nobruf/nestjs-ddd/issues"
+  },
+  "homepage": "https://github.com/nobruf/nestjs-ddd#readme"
 }
