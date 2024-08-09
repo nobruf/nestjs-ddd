@@ -1,6 +1,6 @@
 {
   "name": "nestjs-ddd",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A tool to generate folder and file structures for NestJS modules in accordance with Domain-Driven Design (DDD) principles.",
   "main": "index.js",
   "scripts": {
