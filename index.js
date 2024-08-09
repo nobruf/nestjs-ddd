@@ -12,10 +12,38 @@ const capitalizeFirstLetter = (string) => {
 // Adjusted function to get template content, now directly mapping file types to template files
 const getTemplateContent = (filePath, moduleName) => {
   const templateMap = {
-    [`src/${moduleName}/application/dtos/${moduleName}-output.ts`]:
-      "src/abstract-module/application/dtos/abstract-output.template.ts",
-    [`src/${moduleName}/application/dtos/__tests__/unit/${moduleName}-output.spec.ts`]:
-      "src/abstract-module/application/dtos/__tests__/unit/abstract-module-output.spec.template.ts",
+    [`src/${moduleName}/application/use-cases/create-${moduleName}.use-case.ts`]:
+      "src/abstract-module/application/use-cases/create-abstract-module.use-case.ts",
+    [`src/${moduleName}/application/use-cases/delete-${moduleName}.use-case.ts`]:
+      "src/abstract-module/application/use-cases/delete-abstract-module.use-case.ts",
+    [`src/${moduleName}/application/use-cases/get-${moduleName}.use-case.ts`]:
+      "src/abstract-module/application/use-cases/get-abstract-module.use-case.ts",
+    [`src/${moduleName}/application/use-cases/update-${moduleName}.use-case.ts`]:
+      "src/abstract-module/application/use-cases/update-abstract-module.use-case.ts",
+    [`src/${moduleName}/domain/entities/${moduleName}.entity.ts`]:
+      "src/abstract-module/domain/entities/abstract-module.entity.ts",
+    [`src/${moduleName}/domain/query-models/${moduleName}.query-model.ts`]:
+      "src/abstract-module/domain/query-models/abstract-module.query-model.ts",
+    [`src/${moduleName}/domain/repositories/${moduleName}.repository.ts`]:
+      "src/abstract-module/domain/repositories/abstract-module.repository.ts",
+    [`src/${moduleName}/domain/testing/${moduleName}-data-builder.ts`]:
+      "src/abstract-module/domain/testing/abstract-module-data-builder.ts",
+    [`src/${moduleName}/domain/validators/${moduleName}.validator.ts`]:
+      "src/abstract-module/domain/validators/abstract-module.validator.ts",
+    [`src/${moduleName}/infrastructure/controllers/${moduleName}.controller.ts`]:
+      "src/abstract-module/infrastructure/controllers/abstract-module.controller.ts",
+    [`src/${moduleName}/infrastructure/database/prisma/mappers/${moduleName}.model-mapper.ts`]:
+      "src/abstract-module/infrastructure/database/prisma/mappers/abstract-module.model-mapper.ts",
+    [`src/${moduleName}/infrastructure/database/prisma/query-models/${moduleName}-prisma.query-model.ts`]:
+      "src/abstract-module/infrastructure/database/prisma/query-models/abstract-module-prisma.query-model.ts",
+    [`src/${moduleName}/infrastructure/database/prisma/repositories/${moduleName}-prisma.repository.ts`]:
+      "src/abstract-module/infrastructure/database/prisma/repositories/abstract-module-prisma.repository.ts",
+    [`src/${moduleName}/infrastructure/dtos/create-${moduleName}.dto.ts`]:
+      "src/abstract-module/infrastructure/dtos/create-abstract-module.dto.ts",
+    [`src/${moduleName}/infrastructure/dtos/update-${moduleName}.dto.ts`]:
+      "src/abstract-module/infrastructure/dtos/update-abstract-module.dto.ts",
+    [`src/${moduleName}/${moduleName}.module.ts`]:
+      "src/abstract-module/abstract-module.module.ts",
     ["README.md"]: "readme.template.md",
     ["tsconfig.json"]: "tsconfig.template.json",
     ["tsconfig.build.json"]: "tsconfig.build.template.json",
@@ -304,22 +332,25 @@ const createFiles = (basePath, files, moduleName, isModule = false) => {
 const generateStructure = (moduleName) => {
   const basePath = path.join(moduleName);
 
-  // // Define directories and files to be created
-  // const dirs = [
-  //   "domain",
-  //   "dto",
-  //   "infrastructure/persistence/document/entities",
-  //   "infrastructure/persistence/document/mappers",
-  //   "infrastructure/persistence/document/repository",
-  // ];
-
   const files = [
-    `src/${moduleName}/application/dtos/${moduleName}-output.ts`,
-    `src/${moduleName}/application/dtos/__tests__/unit/${moduleName}-output.spec.ts`,
+    `src/${moduleName}/application/use-cases/create-${moduleName}.use-case.ts`,
+    `src/${moduleName}/application/use-cases/delete-${moduleName}.use-case.ts`,
+    `src/${moduleName}/application/use-cases/get-${moduleName}.use-case.ts`,
+    `src/${moduleName}/application/use-cases/update-${moduleName}.use-case.ts`,
+    `src/${moduleName}/domain/entities/${moduleName}.entity.ts`,
+    `src/${moduleName}/domain/query-models/${moduleName}.query-model.ts`,
+    `src/${moduleName}/domain/repositories/${moduleName}.repository.ts`,
+    `src/${moduleName}/domain/testing/${moduleName}-data-builder.ts`,
+    `src/${moduleName}/domain/validators/${moduleName}.validator.ts`,
+    `src/${moduleName}/infrastructure/controllers/${moduleName}.controller.ts`,
+    `src/${moduleName}/infrastructure/database/prisma/mappers/${moduleName}.model-mapper.ts`,
+    `src/${moduleName}/infrastructure/database/prisma/query-models/${moduleName}-prisma.query-model.ts`,
+    `src/${moduleName}/infrastructure/database/prisma/repositories/${moduleName}-prisma.repository.ts`,
+    `src/${moduleName}/infrastructure/dtos/create-${moduleName}.dto.ts`,
+    `src/${moduleName}/infrastructure/dtos/update-${moduleName}.dto.ts`,
+    `src/${moduleName}/${moduleName}.module.ts`,
   ];
 
-  // Create directories and files
-  // createDirectories(basePath, dirs);
   createFiles(basePath, files, moduleName, true);
 };
 
