@@ -7,6 +7,9 @@
     "start": "node index.js",
     "generate": "node index.js"
   },
+  "publishConfig": {
+    "@nobruf:registry": "https://npm.pkg.github.com"
+  },
   "bin": {
     "nestjs-ddd": "index.js"
   },
