@@ -328,6 +328,46 @@ const createFiles = (basePath, files, moduleName, isModule = false) => {
   });
 };
 
+// Link module on app module
+const linkModule = (moduleName) => {
+  const appModulePath = path.resolve("src/app.module.ts");
+  const moduleImportName = capitalizeFirstLetter(moduleName);
+  const moduleImportPath = `import { ${moduleImportName}Module } from \'src/${moduleName}/${moduleName}.module';`;
+
+  fs.readFile(appModulePath, "utf8", (err, data) => {
+    if (err) {
+      console.error(
+        "Failed to link module in app file because it is not in project folder"
+      );
+      return;
+    }
+
+    if (data.includes(moduleImportPath)) {
+      return;
+    }
+
+    const importStatement = `${moduleImportPath}\n`;
+    const importsIndex = data.indexOf("@Module({");
+    const importsInsertionPoint =
+      data.indexOf("imports: [", importsIndex) + "imports: [".length;
+
+    const updatedData =
+      data.slice(0, importsInsertionPoint) +
+      `\n  ${moduleImportName}Module,` +
+      data.slice(importsInsertionPoint);
+
+    const finalData = importStatement + updatedData;
+
+    fs.writeFile(appModulePath, finalData, "utf8", (err) => {
+      if (err) {
+        console.error("Failed to link module in app file");
+      } else {
+        console.log("Module created and linked successfully");
+      }
+    });
+  });
+};
+
 // Generate the structure based on module name and target directory
 const generateStructure = (moduleName) => {
   const basePath = path.join(moduleName);
@@ -351,7 +391,11 @@ const generateStructure = (moduleName) => {
     `src/${moduleName}/${moduleName}.module.ts`,
   ];
 
+  // Create files
   createFiles(basePath, files, moduleName, true);
+
+  // Link module on app module
+  linkModule(moduleName);
 };
 
 // Generate default files (to be implemented)
